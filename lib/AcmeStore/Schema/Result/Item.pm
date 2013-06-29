@@ -92,5 +92,8 @@ __PACKAGE__->has_many(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:GwzuW5x6Q0fjooNe9jnF0g
 
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->add_unique_constraint(
+    name_price_manufacturer => [ qw/name price manufacturer_id/ ],
+);
+
 1;

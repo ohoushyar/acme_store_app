@@ -115,5 +115,8 @@ __PACKAGE__->belongs_to(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:kYn+IWQH+BwbEEgbkNvCYg
 
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->add_unique_constraint(
+    number_date_cid_iid => [ qw/order_number order_date customer_id item_id/ ],
+);
+
 1;
