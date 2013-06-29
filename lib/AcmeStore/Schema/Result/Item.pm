@@ -42,7 +42,8 @@ __PACKAGE__->table("items");
 =head2 manufacturer_id
 
   data_type: 'integer'
-  is_nullable: 1
+  is_foreign_key: 1
+  is_nullable: 0
 
 =cut
 
@@ -54,7 +55,7 @@ __PACKAGE__->add_columns(
   "price",
   { data_type => "text", is_nullable => 1 },
   "manufacturer_id",
-  { data_type => "integer", is_nullable => 1 },
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
 );
 
 =head1 PRIMARY KEY
@@ -69,9 +70,26 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
+=head1 RELATIONS
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-28 19:22:11
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:SJDT/4CnZszbInZFUVJ+3A
+=head2 orders
+
+Type: has_many
+
+Related object: L<AcmeStore::Schema::Result::Order>
+
+=cut
+
+__PACKAGE__->has_many(
+  "orders",
+  "AcmeStore::Schema::Result::Order",
+  { "foreign.item_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-29 17:49:37
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:GwzuW5x6Q0fjooNe9jnF0g
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

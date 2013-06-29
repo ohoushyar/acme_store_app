@@ -25,7 +25,8 @@ __PACKAGE__->table("customers");
 
 =head2 id
 
-  data_type: 'numeric'
+  data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
 
 =head2 first_name
@@ -42,7 +43,7 @@ __PACKAGE__->table("customers");
 
 __PACKAGE__->add_columns(
   "id",
-  { data_type => "numeric", is_nullable => 0 },
+  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "first_name",
   { data_type => "text", is_nullable => 1 },
   "last_name",
@@ -61,9 +62,26 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
+=head1 RELATIONS
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-28 19:22:11
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Zr9x1H17WyuIZFaiAIyUeQ
+=head2 orders
+
+Type: has_many
+
+Related object: L<AcmeStore::Schema::Result::Order>
+
+=cut
+
+__PACKAGE__->has_many(
+  "orders",
+  "AcmeStore::Schema::Result::Order",
+  { "foreign.customer_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-29 17:49:37
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/lVMeJ9cMBHpS7P2vEB9sQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
