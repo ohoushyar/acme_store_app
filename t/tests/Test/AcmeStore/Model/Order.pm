@@ -1,6 +1,5 @@
 package Test::AcmeStore::Model::Order;
 
-use DateTime;
 use Test::Most;
 use base 'Test::AcmeStore::Model::Base';
 
@@ -46,7 +45,7 @@ sub constructor : Tests(3) {
     isa_ok $obj, $class, '... and the object ';
 }
 
-sub schema : Tests() {
+sub schema : Tests(3) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -103,7 +102,7 @@ sub customer_id : Tests(4) {
       '... and customer_id successfully returns the expected value';
 }
 
-sub save : Tests(no_plan) {
+sub save : Tests(4) {
     my $test   = shift;
     my $class  = $test->class;
     my $obj    = $test->_get_obj;

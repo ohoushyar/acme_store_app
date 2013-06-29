@@ -3,6 +3,8 @@ package Test::AcmeStore::Model::Base;
 use Test::Most;
 use base 'Test::Class';
 
+INIT { Test::Class->runtests }
+
 sub class { 'AcmeStore::Model::Base' }
 
 sub startup : Tests(startup => 2) {
@@ -27,7 +29,7 @@ sub constructor : Tests(3) {
     isa_ok $base_obj, $class, '... and the object returns as expected';
 }
 
-sub schema : Tests() {
+sub schema : Tests(3) {
     my $test  = shift;
     my $class = $test->class;
 
