@@ -1,0 +1,13 @@
+Schema Design
+=============
+My design of schema shows how much I believe in data normalization. I have chosen id for each table and used that to link datas. Also about manufacrurer again I put that into separate table as there are similarity of manufacturer in csv file and it makes sense to use the id in item rather than the name.
+
+There might be a question about how much joins I need to get data and that might slow down the performance. By having few indecies it's possible to overcome the performance issue.
+
+Dependencies
+============
+DBI
+DBD::SQLite
+Mo
+Mojolicious
+
