@@ -33,7 +33,7 @@ sub constructor : Tests(3) {
     isa_ok $obj, $class, '... and the object ';
 }
 
-sub schema : Tests() {
+sub schema : Tests(3) {
     my $test  = shift;
     my $class = $test->class;
 
