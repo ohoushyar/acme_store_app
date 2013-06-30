@@ -26,9 +26,7 @@ sub save {
     my $fh = $self->fh;
 
     while (my $line = <$fh>) {
-        warn $line;
-        unless ($header_line) {
-            warn 'headeeeeeer';
+        if ($header_line) {
             $header_line = 0;
             next;
         }
