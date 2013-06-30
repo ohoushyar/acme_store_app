@@ -1,6 +1,5 @@
 package Test::AcmeStore::PosDataParser;
 
-use Data::Dumper;
 use Test::Most;
 use base 'Test::Class';
 
@@ -29,7 +28,7 @@ sub startup : Tests(startup => 2) {
       'created db successfully';
 }
 
-sub constructor : Tests(14) {
+sub constructor : Tests(17) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -55,6 +54,14 @@ sub constructor : Tests(14) {
     is $data->{'item_manufacturer'}, 'acme',
       '... and item_manufacturer successfully set';
     is $data->{'item_price'}, '$3.25', '... and item_price successfully set';
+
+
+    my $special_case = q(2013-02-05 19:23:04,19,John,Davidson,53-1,"pen, ball point",acme,$.99);
+    ok my $obj2 = $class->new( line => $special_case),
+      'The constructor succeeded on special case';
+    isa_ok $obj2, $class, '... and the object returns as expected';
+    is $obj2->data->{'item_name'}, 'pen, ball point',
+      '... and item_name successfully set';
 
 }
 
