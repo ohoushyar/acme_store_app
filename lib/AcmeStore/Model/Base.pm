@@ -8,8 +8,7 @@ use Mo qw(builder default);
 use AcmeStore::Schema;
 
 has 'filename' => (
-    is      => 'rw',
-    default => 'db/acme_store_db',
+    default => sub { $ENV{'ACMESTORE_DB'} || 'db/acme_store_db'; },
 );
 has 'schema' => (
     builder => 'schema_builder',

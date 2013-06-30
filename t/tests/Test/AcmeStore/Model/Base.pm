@@ -3,8 +3,6 @@ package Test::AcmeStore::Model::Base;
 use Test::Most;
 use base 'Test::Class';
 
-# TODO: use the tmp db
-
 INIT { Test::Class->runtests }
 
 sub class { 'AcmeStore::Model::Base' }
