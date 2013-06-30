@@ -91,9 +91,31 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-29 17:49:37
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:GwzuW5x6Q0fjooNe9jnF0g
 
+=head2 name_price_manufacturer
+
+Type: unique constraint
+
+=cut
 
 __PACKAGE__->add_unique_constraint(
     name_price_manufacturer => [ qw/name price manufacturer_id/ ],
 );
+
+
+=head2 manufacturer
+
+Type: belongs_to
+
+Related object: L<AcmeStore::Schema::Result::Manufacturer>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "manufacturer",
+  "AcmeStore::Schema::Result::Manufacturer",
+  { id => "manufacturer_id" },
+  { is_deferrable => 0, on_delete => "NO ACTION", on_update => "NO ACTION" },
+);
+
 
 1;
