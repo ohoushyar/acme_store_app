@@ -1,6 +1,6 @@
 package Test::AcmeStore::PosDataCSVParser;
 
-use FindBin;
+use FindBin qw($Bin);
 use Test::Most;
 use base 'Test::Class';
 
@@ -13,7 +13,7 @@ sub class { 'AcmeStore::PosDataCSVParser' }
 sub _get_obj {
     my $test  = shift;
     my $class = $test->class;
-    my $filename = "$FindBin::Bin/../../../../tmp/orders.csv";
+    my $filename = "$Bin/../../../../tmp/orders.csv";
     return $class->new(
         fullpath_filename => $filename,
     );
