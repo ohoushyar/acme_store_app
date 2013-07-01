@@ -1,0 +1,11 @@
+% layout 'default';
+% title 'Upload';
+<h2>Upload</h2>
+
+<p>Upload CSV (Comma-separated values) file.</p>
+
+%= form_for do_upload => (enctype => 'multipart/form-data') => begin
+    %= file_field 'csvfile'
+    %= submit_button 'Upload'
+% end
+

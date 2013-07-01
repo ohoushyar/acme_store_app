@@ -1,0 +1,10 @@
+% layout 'default';
+% title 'Welcome';
+<h2>Welcome to ACME Store Reporting System</h2>
+
+<p>You can upload CSV POS data and get awesome report.</p>
+
+<ul>
+    <li><a href="<%== url_for %>">Upload CSV</a></li>
+    <li><a href="<%== url_for %>">Report</a></li>
+</ul>
