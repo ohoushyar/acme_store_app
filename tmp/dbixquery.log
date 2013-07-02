@@ -1,0 +1,1 @@
+SELECT me.id, me.first_name, me.last_name FROM customers me WHERE ( me.id = ? ): '100'
