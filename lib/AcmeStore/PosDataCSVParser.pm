@@ -37,6 +37,8 @@ sub save {
             carp "Unable to save the line; ERROR [$@]";
         }
     }
+
+    return 1;
 }
 
 1;
