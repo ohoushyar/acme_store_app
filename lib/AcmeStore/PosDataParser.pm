@@ -21,7 +21,7 @@ sub BUILD {
     my $self = shift;
     my $line = $self->{'line'};
     Carp::croak 'Invalid line to parse' unless length $line;
-    my $csv = Text::CSV->new();
+    my $csv = Text::CSV->new({ allow_whitespace => 1 });
 
     my ( $order_date, $customer_id, $customer_first_name, $customer_last_name,
         $order_number, $item_name, $item_manufacturer, $item_price )

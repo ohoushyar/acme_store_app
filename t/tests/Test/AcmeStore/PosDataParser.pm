@@ -24,6 +24,8 @@ sub startup : Tests(startup => 2) {
     system('mkdir ./tmp') == 0
       or die 'Unable to make dir ./tmp'
       unless ( -d './tmp' );
+
+    system("rm $path_to_db") == 0 or die "Unable to remove the old db [$path_to_db] ERROR [$!]";
     ok system("sqlite3 $path_to_db < ./sql/ddl.sql") == 0,
       'created db successfully';
 }
