@@ -1,5 +1,6 @@
 To RUN
 =============
+$  sqlite3 db/acme_store_db < sql/ddl.sql
 $ ./script/acme_store_app daemon
 
 Schema Design
