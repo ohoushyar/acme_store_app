@@ -3,6 +3,8 @@ package Test::AcmeStore::Model::Item;
 use Test::Most;
 use base 'Test::AcmeStore::Model::Base';
 
+use AcmeStore::Model::Manufacturer;
+
 sub class { 'AcmeStore::Model::Item' }
 
 sub _get_obj {
@@ -18,13 +20,12 @@ sub _get_obj {
 sub make_fixture : Test(setup) {
     my $test   = shift;
     my $class  = $test->class;
-    my $schema = AcmeStore::Model::Base->new->schema;
 
-    ok $schema->resultset('Manufacturer')->create( { name => 'foo' } ),
+    ok my $res = AcmeStore::Model::Manufacturer->new(name => 'foo')->save,
       '... added fixture successfully';
 };
 
-sub constructor : Tests(3) {
+sub constructor : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -33,7 +34,7 @@ sub constructor : Tests(3) {
     isa_ok $obj, $class, '... and the object ';
 }
 
-sub schema : Tests(3) {
+sub schema : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -44,7 +45,7 @@ sub schema : Tests(3) {
     isa_ok $schema, 'AcmeStore::Schema', '... and expected schema returns';
 }
 
-sub name : Tests(4) {
+sub name : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -59,7 +60,7 @@ sub name : Tests(4) {
       '... and name successfully returns the expected value';
 }
 
-sub price : Tests(4) {
+sub price : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -74,7 +75,7 @@ sub price : Tests(4) {
       '... and price successfully returns the expected value';
 }
 
-sub manufacturer_id : Tests(4) {
+sub manufacturer_id : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 

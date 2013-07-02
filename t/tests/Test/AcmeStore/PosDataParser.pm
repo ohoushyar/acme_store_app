@@ -28,7 +28,7 @@ sub startup : Tests(startup => 2) {
       'created db successfully';
 }
 
-sub constructor : Tests(17) {
+sub constructor : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 

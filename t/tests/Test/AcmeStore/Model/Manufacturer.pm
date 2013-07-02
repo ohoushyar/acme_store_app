@@ -13,7 +13,7 @@ sub _get_obj {
     );
 }
 
-sub constructor : Tests(3) {
+sub constructor : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -22,7 +22,7 @@ sub constructor : Tests(3) {
     isa_ok $obj, $class, '... and the object ';
 }
 
-sub schema : Tests(3) {
+sub schema : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -33,7 +33,7 @@ sub schema : Tests(3) {
     isa_ok $schema, 'AcmeStore::Schema', '... and expected schema returns';
 }
 
-sub name : Tests(4) {
+sub name : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 

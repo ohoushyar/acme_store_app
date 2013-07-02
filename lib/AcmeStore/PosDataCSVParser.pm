@@ -5,7 +5,6 @@ use warnings;
 
 use Carp;
 use Mo qw(build required default);
-use FindBin;
 
 use AcmeStore::PosDataParser;
 

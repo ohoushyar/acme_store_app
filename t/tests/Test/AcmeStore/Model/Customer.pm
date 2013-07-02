@@ -5,7 +5,7 @@ use base 'Test::AcmeStore::Model::Base';
 
 sub class { 'AcmeStore::Model::Customer' }
 
-sub constructor : Tests(3) {
+sub constructor : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -33,7 +33,7 @@ sub schema : Tests() {
     isa_ok $schema, 'AcmeStore::Schema', '... and expected schema returns';
 }
 
-sub id : Tests(4) {
+sub id : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -50,7 +50,7 @@ sub id : Tests(4) {
     is $obj->id, 200, '... and id successfully returns the expected value';
 }
 
-sub first_name : Tests(4) {
+sub first_name : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 
@@ -69,7 +69,7 @@ sub first_name : Tests(4) {
       '... and first_name successfully returns the expected value';
 }
 
-sub last_name : Tests(4) {
+sub last_name : Tests(no_plan) {
     my $test  = shift;
     my $class = $test->class;
 

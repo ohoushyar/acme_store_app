@@ -1,10 +1,7 @@
 package Test::AcmeStore::PosDataCSVParser;
 
-use FindBin qw($Bin);
 use Test::Most;
 use base 'Test::Class';
-
-use constant DBFILE => './tmp/test_db';
 
 INIT { Test::Class->runtests }
 
@@ -13,21 +10,19 @@ sub class { 'AcmeStore::PosDataCSVParser' }
 sub _get_obj {
     my $test  = shift;
     my $class = $test->class;
-    my $filename = "$Bin/../../../../tmp/orders.csv";
+    my $filename = "./tmp/orders.csv";
     return $class->new(
         fullpath_filename => $filename,
     );
 }
 
-sub startup : Tests(startup => 2) {
+sub startup : Tests(startup => 3) {
     my $test = shift;
-
+    die_on_fail;
+    ok length $ENV{'ACMESTORE_DB'}, 'ENV set for test_db';
     use_ok $test->class;
 
-    my $path_to_db = DBFILE;
-    system('mkdir ./tmp') == 0
-      or die 'Unable to make dir ./tmp'
-      unless ( -d './tmp' );
+    my $path_to_db =  $ENV{'ACMESTORE_DB'};
     ok system("sqlite3 $path_to_db < ./sql/ddl.sql") == 0,
       'created db successfully';
 }
