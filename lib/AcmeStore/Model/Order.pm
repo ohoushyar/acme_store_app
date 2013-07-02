@@ -1,15 +1,16 @@
 package AcmeStore::Model::Order;
 
+use Carp;
 use strict;
 use warnings;
 
 use Mo qw(default required);
 extends 'AcmeStore::Model::Base';
 
-has 'order_number' => ( is => 'rw', required => 1 );
-has 'order_date'   => ( is => 'rw', required => 1 );
-has 'customer_id'  => ( is => 'rw', required => 1 );
-has 'item_id'      => ( is => 'rw', required => 1 );
+has 'order_number' => ( required => 1 );
+has 'order_date'   => ( required => 1 );
+has 'customer_id'  => ( required => 1 );
+has 'item_id'      => ( required => 1 );
 
 sub save {
     my $self   = shift;
@@ -29,8 +30,7 @@ sub save {
         );
     };
     if ($@) {
-        Carp::croak("Unable to save Order; ERROR: [$@]");
-        return;
+        croak("Unable to save Order; ERROR: [$@]");
     }
 
     return $result;

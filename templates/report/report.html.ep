@@ -1,0 +1,56 @@
+% layout 'default';
+% title 'Report';
+% use DateTime;
+<h2>Report</h2>
+
+<p>Choose type of report:</p>
+
+<form action="<%== url_for('/show_report_order') %>" method="POST" >
+
+    <label for="by">Show Item(s) Purchased per order number:</label>
+    <select id="report_by_order" name="report_by_order">
+    <option value="" selected>Please choose</option>
+
+    % foreach my $order_number (@{$order_numbers}){
+        <option value="<%= $order_number %>"><%= $order_number %></option>
+    % }
+
+    </select>
+
+    <input type="submit" value="show"/>
+
+</form>
+
+<form action="<%== url_for('/show_report_customer') %>" method="POST" >
+
+    <label for="by">Show Item(s) Purchased per customer:</label>
+    <select id="report_by_customer" name="report_by_customer">
+    <option value="" selected>Please choose</option>
+
+    % foreach my $customer (@{$customers}){
+        <option value="<%= $customer->{id} %>"><%= join(' ',$customer->{first_name}, $customer->{last_name}) %></option>
+    % }
+
+    </select>
+
+    <input type="submit" value="show"/>
+
+</form>
+
+<form action="<%== url_for('/show_report_date') %>" method="POST" >
+
+    <label for="by">Show Item(s) Purchased per order number:</label>
+    <select id="report_by_date" name="report_by_date">
+    <option value="" selected>Please choose</option>
+
+    % foreach my $order_date (@$order_dates){
+        <option value="<%= $order_date %>"><%= DateTime->from_epoch( epoch => $order_date )->ymd %></option>
+    % }
+
+    </select>
+
+    <input type="submit" value="show"/>
+
+</form>
+
+<a href="<%= url_for('/') %>" >Back</a>

@@ -1,0 +1,21 @@
+% layout 'default';
+% title 'Report';
+<h2>Report by <%= $report_cat %></h2>
+
+<table>
+    <tr>
+    % foreach my $column_head (@$column_heads) {
+        <th><%= $column_head %></th>
+    % }
+    </tr>
+
+    % foreach my $row (@$rows) {
+        <tr>
+        % foreach my $col (@$row) {
+            <td><%= $col %></td>
+        % }
+        </tr>
+    % }
+</table>
+
+<a href="<%= url_for('/report') %>" >Back</a>
