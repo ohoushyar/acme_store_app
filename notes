@@ -1,13 +1,57 @@
+To RUN
+=============
+$ ./script/acme_store_app daemon
+
 Schema Design
 =============
-My design of schema shows how much I believe in data normalization. I have chosen id for each table and used that to link datas. Also about manufacrurer again I put that into separate table as there are similarity of manufacturer in csv file and it makes sense to use the id in item rather than the name.
 
-There might be a question about how much joins I need to get data and that might slow down the performance. By having few indecies it's possible to overcome the performance issue.
+ MANUFACTURERS                          ITEMS
+.-------------.                      .-----------------.
+| ID          + <-------.            | ID              + <--.
+| NAME        |          |           | NAME            |     |
+'-------------'          |           | PRICE           |     |
+                          '----------- MANUFACTURER_ID |     |
+                                     '-----------------'     |
+                                                             |
+                                                             |
+ CUSTOMERS                            ORDERS                 |
+.-------------.                      .-----------------.     |
+| ID          + <-------.            | ID              |     |
+| FIRST_NAME  |          \           | ITEM_ID         -----'
+| LAST_NAME   |           '----------- CUSTOMER_ID     |
+'-------------'                      | ORDER_NUMBER    |
+                                     | ORDER_DATE      |
+                                     '-----------------'
+
+CREATE TABLE MANUFACTURERS (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT
+);
+CREATE TABLE customers (
+        id INTEGER PRIMARY KEY,
+        first_name TEXT,
+        last_name TEXT
+);
+CREATE TABLE items (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        price TEXT,
+        manufacturer_id INTEGER NOT NULL REFERENCES manufacturers(id)
+);
+CREATE TABLE orders (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        order_number TEXT,
+        order_date NUMERIC,
+        customer_id INTEGER NOT NULL REFERENCES customers(id),
+        item_id INTEGER NOT NULL REFERENCES items(id)
+);
+
 
 Dependencies
 ============
-DBI
-DBD::SQLite
+DateTime
+DBIx::Class
 Mo
 Mojolicious
+
 
