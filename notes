@@ -1,7 +1,22 @@
+Dependencies
+============
+    Third Party Packages
+    ====================
+    sqlite3
+
+    Perl Modules
+    ============
+    DateTime
+    DBIx::Class
+    Mo
+    Mojolicious
+
+
 To RUN
 =============
 $  sqlite3 db/acme_store_db < sql/ddl.sql
 $ ./script/acme_store_app daemon
+
 
 Schema Design
 =============
@@ -24,7 +39,7 @@ Schema Design
                                      | ORDER_DATE      |
                                      '-----------------'
 
-CREATE TABLE MANUFACTURERS (
+CREATE TABLE manufacturers (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT
 );
@@ -48,11 +63,44 @@ CREATE TABLE orders (
 );
 
 
-Dependencies
-============
-DateTime
-DBIx::Class
-Mo
-Mojolicious
+Examples of Report Screen
+=========================
+
+/report
+-------
+Choose type of report:
+
+Show Item(s) Purchased per order number:    
+Show Item(s) Purchased per customer:    
+Show Item(s) Purchased per order number:    
+Back
+
+/show_report_customer
+---------------------
+Report by Customer
+
+Customer Name   Item Name   Item Price
+John Davidson   journal $4.50
+John Davidson   pen, ball point $.99
+Back
+
+/show_report_order
+------------------
+Report by Order
+
+Order no.   Item Name   Item Price
+23  fountain pen    $3.25
+23  journal $5.50
+Back
+
+/show_report_date
+-----------------
+Report by Date
+
+Date    Item Name   Item Price
+2013-02-01 12:32:00 fountain pen    $3.25
+2013-02-01 12:32:00 journal $5.50
+2013-02-01 13:01:00 journal $5.50
+Back
 
 
