@@ -1,5 +1,6 @@
 package AcmeStoreApp::Report;
 use DateTime;
+use List::MoreUtils qw(uniq);
 use Mojo::Base 'Mojolicious::Controller';
 use AcmeStore::Model::OrderReport;
 use AcmeStore::Model::CustomerReport;
@@ -9,12 +10,16 @@ sub report {
     my $logger = $self->app->log;
 
     my $order_report    = AcmeStore::Model::OrderReport->new;
+    my @order_numbers = uniq sort @{ $order_report->get_all_order_numbers };
     my $customer_report = AcmeStore::Model::CustomerReport->new;
+    my @customers = uniq sort @{$customer_report->get_all_customers};
+
     my $res             = $order_report->get_all_dates;
     my @keys_of_res     = map {$self->_get_date_epoch($_)} keys %$res;
+    @keys_of_res = uniq sort @keys_of_res;
 
-    $self->stash( order_numbers => $order_report->get_all_order_numbers );
-    $self->stash( customers     => $customer_report->get_all_customers );
+    $self->stash( order_numbers => \@order_numbers);
+    $self->stash( customers     => \@customers );
     $self->stash( order_dates   => \@keys_of_res );
 
 };
