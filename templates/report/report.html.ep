@@ -5,7 +5,7 @@
 
 <p>Choose type of report:</p>
 
-<form action="<%== url_for('/show_report_order') %>" method="POST" >
+<form action="<%== url_for('/show_report_order') %>" method="POST" class="form-horizontal">
 
     <label for="by">Show Item(s) Purchased per order number:</label>
     <select id="report_by_order" name="report_by_order">
@@ -17,11 +17,11 @@
 
     </select>
 
-    <input type="submit" value="show"/>
+    <button type="submit" class="btn">Submit</button>
 
 </form>
 
-<form action="<%== url_for('/show_report_customer') %>" method="POST" >
+<form action="<%== url_for('/show_report_customer') %>" method="POST" class="form-horizontal">
 
     <label for="by">Show Item(s) Purchased per customer:</label>
     <select id="report_by_customer" name="report_by_customer">
@@ -33,11 +33,11 @@
 
     </select>
 
-    <input type="submit" value="show"/>
+    <button type="submit" class="btn">Submit</button>
 
 </form>
 
-<form action="<%== url_for('/show_report_date') %>" method="POST" >
+<form action="<%== url_for('/show_report_date') %>" method="POST" class="form-horizontal">
 
     <label for="by">Show Item(s) Purchased per order number:</label>
     <select id="report_by_date" name="report_by_date">
@@ -49,7 +49,7 @@
 
     </select>
 
-    <input type="submit" value="show"/>
+    <button type="submit" class="btn">Submit</button>
 
 </form>
 

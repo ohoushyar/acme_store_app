@@ -2,7 +2,7 @@
 % title 'Report';
 <h2>Report by <%= $report_cat %></h2>
 
-<table>
+<table class="table table-bordered table-striped">
     <tr>
     % foreach my $column_head (@$column_heads) {
         <th><%= $column_head %></th>
