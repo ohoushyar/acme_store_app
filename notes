@@ -17,6 +17,10 @@ To RUN
 $  sqlite3 db/acme_store_db < sql/ddl.sql
 $ ./script/acme_store_app daemon
 
+To Run Tests
+============
+$ ACMESTORE_DB=./tmp/test_db ./script/acme_store_app test
+
 
 Schema Design
 =============
