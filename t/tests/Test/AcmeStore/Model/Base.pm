@@ -10,7 +10,7 @@ sub class { 'AcmeStore::Model::Base' }
 sub startup : Tests(startup => 3) {
     my $test = shift;
     die_on_fail;
-    ok length $ENV{'ACMESTORE_DB'}, 'ENV set for test_db';
+    ok length $ENV{'ACMESTORE_DB'}, 'ACMESTORE_DB ENV variable set for test_db';
     use_ok $test->class;
 
     my $path_to_db =  $ENV{'ACMESTORE_DB'};

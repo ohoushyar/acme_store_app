@@ -19,7 +19,7 @@ sub _get_obj {
     );
 }
 
-sub make_fixture : Tests(setup) {
+sub make_fixture : Tests(setup => 3) {
     my $test   = shift;
     my $class  = $test->class;
 
